@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <body style="margin-left:100px; margin-right:100px; padding:20px;">
+    <div style="margin-left:20px; margin-right:200px; display:block;padding:20px; width=50%">  
+        <h3>Registered Users</h3>
+        <br/>
+        <ul>
+          {% for user in users %}
+              <li>{{user['userName']}} [{{ user['userID'] }}]</li>
+          {% endfor %}
+        </ul>
+        <br/>
+        <button type="button" onclick="location.href='{{ url }}'">Add User</button>
+        <button type="button" onclick="location.href='/'">Refresh</button>
+        </div>
+    </body>
+</html>
+<script>
+</script>

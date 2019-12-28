@@ -13,7 +13,7 @@ from oauthlib.oauth2.rfc6749.errors import MismatchingStateError, MissingTokenEr
 
 class OAuth2Server:
     def __init__(self, client_id, client_secret,
-                 redirect_uri='http://127.0.0.1:8080/'):
+                 redirect_uri='https://fetch-test.run-us-west1.goorm.io'):
         """ Initialize the FitbitOauth2Client """
         self.success_html = """
             <h1>You are now authorized to access the Fitbit API!</h1>
@@ -34,8 +34,11 @@ class OAuth2Server:
         server to accept the response
         """
         url, _ = self.fitbit.client.authorize_token_url()
+        
         # Open the web browser in a new thread for command-line browser support
         threading.Timer(1, webbrowser.open, args=(url,)).start()
+#         cherrypy.config.update({'server.socket_host': 'fetch-test.run-us-west1.goorm.io', 'server.socket_port': 8080 }) 
+        cherrypy.server.socket_port = 8000
         cherrypy.quickstart(self)
 
     @cherrypy.expose

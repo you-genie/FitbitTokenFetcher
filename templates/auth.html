@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <body style="margin-left:100px; margin-right:100px; padding:50px;">
+    <div style="margin-left:70px; margin-right:70px; display:block;padding:50px;text-align:center; width=50%">  
+        <h3>Login Succeed!</h3>
+        <p>
+            Now press the logout button below to proceed the next step.
+        </p>
+        <br/>
+        <p>
+            Then you can go to the next step.
+        </p>
+        <br/>
+        <button id="logout" type="button" target="_blank" onclick="doNext()">
+            LogOut
+            </button>
+        <button id="next" type="button" onclick="location.href='/'" disabled>
+            Next
+        </button>
+        </div>
+    </body>
+</html>
+<script>
+    function doNext() {
+        document.getElementById("next").disabled = false;
+        document.getElementById("logout").disabled = true;
+        window.open('https://www.fitbit.com/logout');
+    }
+</script>
