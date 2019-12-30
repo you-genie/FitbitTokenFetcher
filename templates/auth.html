@@ -11,19 +11,40 @@
             Then you can go to the next step.
         </p>
         <br/>
-        <button id="logout" type="button" target="_blank" onclick="doNext()">
+        <button id="logout" type="button" target="_blank" onclick="logOut()">
             LogOut
             </button>
-        <button id="next" type="button" onclick="location.href='/'" disabled>
+        <button id="next" type="button" onclick="location.href=parseParams()" disabled>
             Next
         </button>
         </div>
     </body>
 </html>
 <script>
-    function doNext() {
+    var vars = {};
+    var params = window.location.href.replace(/[#&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+        vars[key] = value;
+    });
+    
+    function logOut() {
         document.getElementById("next").disabled = false;
         document.getElementById("logout").disabled = true;
         window.open('https://www.fitbit.com/logout');
     }
+    
+    function parseParams() {
+        let userId = vars['user_id']
+        let accessToken = vars['access_token']
+        let expiresIn = vars['expires_in']
+        let state = vars['state']
+        
+        var paramString = 
+            "?" + "user_id=" + userId + "&access_token=" + accessToken;
+        paramString = paramString + "&expires_in=" + expiresIn;
+        paramString = paramString + "&state=" + state;
+        
+        return '/' + paramString;  
+    }
+    
+    
 </script>
